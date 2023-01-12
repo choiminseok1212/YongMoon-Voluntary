@@ -15,7 +15,7 @@
 
 
 	var tc = 21; // tile count (무조건 홀수)
-	var gs = 20; // 미로의 정사각형 한 칸 사이즈, grid size
+	var gs = 15; // 미로의 정사각형 한 칸 사이즈, grid size
 	var field; // 미로 벽에 대해 값이 0인 맵 위치 배열
 	var px = py = 1; // 0 < =  px,py < tc
 	var xv = yv = 0;
@@ -53,10 +53,12 @@
 			
 		}
 	}
-
+	score = 0;
 
 	// 미로 탈출 성공 후, 게임이 리셋되거나, 처음 게임을 시작할 때 호출 하는 함수, 캔버스 스타일 & 크기도 함께 지정
 	function initialize(){
+		score = 0;
+		document.getElementById("score").innerHTML = "움직인 횟수:"+score;
 		document.getElementById("mazeSize").value = tc;
 		make2DArray();
 		
@@ -90,7 +92,7 @@
 		ctx.fillStyle="white";
 		ctx.fillRect(xx*gs, yy*gs, gs, gs);
 	}
-
+	
 	// 방향 키 이벤트
 	function keyPush(evt){
 		
@@ -108,16 +110,24 @@
 			* down : 40
 			*/
 			case 37: // left
-				xv = -1; yv = 0; 
+				xv = -1; yv = 0;
+				score +=1;
+				document.getElementById("score").innerHTML = "움직인 횟수:"+score;
 				break;
 			case 38: // up
 				yv = -1; xv = 0
+				score +=1;
+				document.getElementById("score").innerHTML = "움직인 횟수:"+score;
 				break;
 			case 39: // right
 				xv = 1; yv = 0; 
+				score +=1;
+				document.getElementById("score").innerHTML = "움직인 횟수:"+score;
 				break;
 			case 40: // down
 				yv = 1; xv = 0
+				score +=1;
+				document.getElementById("score").innerHTML = "움직인 횟수:"+score;
 				break;
 		}
 
